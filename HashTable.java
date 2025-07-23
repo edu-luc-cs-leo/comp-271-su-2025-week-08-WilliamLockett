@@ -90,6 +90,21 @@ public class HashTable<E extends Comparable<E>> {
      *         underlying array; false otherwise.
      */
     public boolean contains(E target) {
+        // take the absoloute value of the index with hash code
+        int position = Math.abs(target.hashCode()) % this.underlying.length;
+        Node<E> current = this.underlying[position];
+        while (current != null) { // while current has something in it
+            /*
+             * if the current = the target
+             * then return true
+             */
+            if (current.getContent().equals(target)){
+                return true;
+            }
+            // move to the next node
+            current = current.getNext();
+        }
+        //no target found then return false
         return false;
     } // method contains
 
